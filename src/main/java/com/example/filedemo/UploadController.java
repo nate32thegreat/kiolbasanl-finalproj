@@ -23,9 +23,6 @@ public class UploadController {
   @Autowired
   FileValidator fileValidator;
 
-  @Autowired
-  GlobalExceptionHandler handler;
-
   Logger logger = LoggerFactory.getLogger(UploadController.class);
 
   @PostMapping("/upload")
@@ -54,14 +51,6 @@ public class UploadController {
     return fileInfo;
 
   }
-
-  @ExceptionHandler(Exception.class)
-  public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
-    ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
-            request.getDescription(false));
-    return new ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
-  }
-
 
   @GetMapping("/")
   public String index() {

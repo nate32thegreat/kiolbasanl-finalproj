@@ -2,11 +2,6 @@ package com.example.filedemo;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
-
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -26,7 +21,7 @@ public class FileValidator implements ConstraintValidator<ValidFile, MultipartFi
         if (!isSupportedContentType(contentType)) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate(
-                    "Extension must be png,jpeg,jpg,gif,pdf,txt.")
+                    "Extension must be png, jpeg, jpg, gif, pdf, or txt.")
                     .addConstraintViolation();
 
             result = false;
